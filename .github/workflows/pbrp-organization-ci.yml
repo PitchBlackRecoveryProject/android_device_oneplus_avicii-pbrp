@@ -65,4 +65,3 @@ jobs:
               sudo apt-get update && sudo apt-get install sshpass -y
               cd $BuildPath 
               bash vendor/utils/pb_deploy.sh ${BUILD_RELEASE_TYPE} ${VENDOR} ${CODENAME}
-avicii

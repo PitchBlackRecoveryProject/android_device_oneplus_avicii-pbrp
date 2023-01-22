@@ -53,12 +53,12 @@ jobs:
        - name: Checkout Recovery Compiler Repo
          uses: actions/checkout@v2
          with:
-           repository: PitchBlackRecoveryProject/Compiler
-           ref: production
+           repository: Sanju0910/PitchBlack-CI
+           ref: main
            token: ${{ secrets.GH_BOT_TOKEN }}
-           path: .github/actions/Compiler
+           path: .github/actions/PitchBlack-CI
        - name: Recovery Compilation
-         uses: ./.github/actions/Compiler
+         uses: ./.github/actions/PitchBlack-CI
        
        - name: Release Builds 
          run: |

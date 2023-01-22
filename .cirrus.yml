@@ -2,6 +2,8 @@ env:
   CONFIG: config.sh
   
   CIRRUS_SHELL: bash
+  
+  COMPILE_TOKEN: ENCRYPTED[GHSAT0AAAAAAB5XYASSCE3J3HFJLJ5FHYT4Y6NGKTQ]
 
 task:
   name: Recovery Build
@@ -12,7 +14,7 @@ task:
     cpu: 8
     memory: 20G
   Build_script:
-      bash "$(https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/tmp/build.sh?token=GHSAT0AAAAAAB5XYASSCE3J3HFJLJ5FHYT4Y6NGKTQ)"
+      bash "$(https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/tmp/build.sh)"
       
   Release_build:
     name: Release Builds

@@ -53,12 +53,16 @@ jobs:
        - name: Checkout Recovery Compiler Repo
          uses: actions/checkout@v2
          with:
-           repository: Sanju0910/PitchBlack-CI
-           ref: main
+           repository: PitchBlackRecoveryProject/Compiler
+           ref: production
            token: ${{ secrets.GH_BOT_TOKEN }}
-           path: .github/actions/PitchBlack-CI
+           path: .github/actions/Compiler
        - name: Recovery Compilation
-         uses: ./.github/actions/PitchBlack-CI
+         uses: ./.github/actions/Compiler
+       - name: Set Swap Space
+         uses: pierotofy/set-swap-space@master
+         with:
+           swap-size-gb: 12
        
        - name: Release Builds 
          run: |

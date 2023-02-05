@@ -28,5 +28,7 @@ task:
     fi
       
   build_script:
+      environment:
+        COMPILER_TOKEN: ENCRYPTED[!e2880e229c5301c5dfeadd51a10c12674bd54d09b787bbc036a08b02ad416f84eb1b25486cceb6e375db6ffc08be403c!]
       - curl -sL ${BUILD_FILE} | bash
       

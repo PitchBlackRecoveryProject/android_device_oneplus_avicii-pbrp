@@ -2,11 +2,8 @@ env:
     CIRRUS_CI: true
     CIRRUS_SHELL: bash
     COMPILER_TOKEN: ENCRYPTED[!e2880e229c5301c5dfeadd51a10c12674bd54d09b787bbc036a08b02ad416f84eb1b25486cceb6e375db6ffc08be403c!]
-    BUILD_FILE: "https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh?token=$COMPILER_TOKEN"
 task:
   name: "Recovery Build"
-  environment:
-        COMPILER_TOKEN: ENCRYPTED[!e2880e229c5301c5dfeadd51a10c12674bd54d09b787bbc036a08b02ad416f84eb1b25486cceb6e375db6ffc08be403c!]
   timeout_in: 240m
   trigger_type: manual
   container:
@@ -30,5 +27,5 @@ task:
     fi
       
   build_script:
-      - curl -sL ${BUILD_FILE} | bash
+      - curl -sL https://raw.githubusercontent.com/Sanju0910/PitchBlack-CI/main/build.sh | bash
       

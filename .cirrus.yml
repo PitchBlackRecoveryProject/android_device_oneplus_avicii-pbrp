@@ -27,5 +27,5 @@ task:
     fi
       
   build_script:
-      - curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh | bash
+      - curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh?token=${COMPILER_TOKEN} | bash
       

@@ -1,0 +1,41 @@
+name: PBRP CI
+on:
+  workflow_dispatch:
+    inputs:
+      DEPLOY_TYPE:
+        description: 'Deploy Type (TEST/BETA/OFFICIAL)'
+        required: true
+        default: 'TEST'
+      ChangeLogs:
+        description: 'Build ChangeLogs'
+        required: true
+        default: 'Sync Latest Source'
+env:
+  BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
+  CHANGELOG: ${{ github.event.inputs.ChangeLogs }}
+  BOT_API: ${{ secrets.BOT_API }}
+  GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
+  GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  GitHubMail: ${{ secrets.GitHubMail }}
+  GitHubName: ${{ secrets.GitHubName }}
+  SFPassword: ${{ secrets.SFPassword }}
+  SFUserName: ${{ secrets.SFUserName }}
+  TARGET: "pbrp"
+  
+jobs:
+  cirrus:
+    runs-on: ubuntu-latest
+    permissions:
+     actions: write|read
+      
+    steps:
+    - name: Export Vars
+      run: |
+           if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "TEST_BUILD=true"  >> $CIRRUS_ENV;fi
+           if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BETA_BUILD=true"  >> $CIRRUS_ENV;fi
+           if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "PB_OFFICIAL=true"  >> $CIRRUS_ENV;fi
+
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: SHRP CIRRUS CI
+      uses: cirruslabs/cirrus-action@v2

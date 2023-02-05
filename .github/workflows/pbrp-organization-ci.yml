@@ -25,8 +25,6 @@ env:
 jobs:
   cirrus:
     runs-on: ubuntu-latest
-    permissions:
-     actions: write|read
       
     steps:
     - name: Export Vars

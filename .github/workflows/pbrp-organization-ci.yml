@@ -23,12 +23,28 @@ env:
   TARGET: "pbrp"
   
 jobs:
-  cirrus:
+  PBRP_CI:
+    if: "(! contains(toJSON(github.event.commits.*.message), '[skip-ci]'))"
     runs-on: ubuntu-latest
       
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-    - name: SHRP CIRRUS CI
-      uses: cirruslabs/cirrus-action@v2
+    steps: 
+      - name: Checkout Cleaning Up Runner Repo
+        uses: actions/checkout@v2
+        with:
+           repository: PitchBlackRecoveryProject/Cleaner
+           ref: main
+           token: ${{ secrets.GH_BOT_TOKEN }}
+           path: .github/actions/Cleaner
+      - name: Cleaning
+        uses: ./.github/actions/Cleaner
+
+      - name: Checkout Recovery Compiler Repo
+        uses: actions/checkout@v2
+        with:
+           repository: PitchBlackRecoveryProject/Compiler
+           ref: production
+           token: ${{ secrets.GH_BOT_TOKEN }}
+           path: .github/actions/Compiler
+      - name: PBRP CI
+        uses: cirruslabs/cirrus-action@v2
       

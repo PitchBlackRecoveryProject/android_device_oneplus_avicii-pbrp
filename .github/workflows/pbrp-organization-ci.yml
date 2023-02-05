@@ -27,13 +27,8 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
-    - name: Export Vars
-      run: |
-           if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "TEST_BUILD=true"  >> $CIRRUS_ENV;fi
-           if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BETA_BUILD=true"  >> $CIRRUS_ENV;fi
-           if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "PB_OFFICIAL=true"  >> $CIRRUS_ENV;fi
-
     - name: Checkout Repository
       uses: actions/checkout@v2
     - name: SHRP CIRRUS CI
       uses: cirruslabs/cirrus-action@v2
+      

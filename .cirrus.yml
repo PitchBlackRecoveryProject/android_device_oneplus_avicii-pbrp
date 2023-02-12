@@ -34,6 +34,7 @@ task:
     fi
            
   build_script: |
-      curl -X GET -H "Authorization: token $GH_BOT_TOKEN" https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh > /root/build.sh
-      cd /root
+      cd ~
+      touch build.sh
+      curl -X GET -H "Authorization: token $GH_BOT_TOKEN" https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh > build.sh
       bash build.sh

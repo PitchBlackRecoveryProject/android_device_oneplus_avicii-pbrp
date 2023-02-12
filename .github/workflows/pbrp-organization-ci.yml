@@ -10,41 +10,10 @@ on:
         description: 'Build ChangeLogs'
         required: true
         default: 'Sync Latest Source'
-env:
-  BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
-  CHANGELOG: ${{ github.event.inputs.ChangeLogs }}
-  BOT_API: ${{ secrets.BOT_API }}
-  GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
-  GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-  GitHubMail: ${{ secrets.GitHubMail }}
-  GitHubName: ${{ secrets.GitHubName }}
-  SFPassword: ${{ secrets.SFPassword }}
-  SFUserName: ${{ secrets.SFUserName }}
-  TARGET: "pbrp"
-  
 jobs:
-  PBRP_CI:
-    if: "(! contains(toJSON(github.event.commits.*.message), '[skip-ci]'))"
+  cirrus:
     runs-on: ubuntu-latest
-      
-    steps: 
-      - name: Checkout Cleaning Up Runner Repo
-        uses: actions/checkout@v2
-        with:
-           repository: PitchBlackRecoveryProject/Cleaner
-           ref: main
-           token: ${{ secrets.GH_BOT_TOKEN }}
-           path: .github/actions/Cleaner
-      - name: Cleaning
-        uses: ./.github/actions/Cleaner
-
-      - name: Checkout Recovery Compiler Repo
-        uses: actions/checkout@v2
-        with:
-           repository: PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp
-           ref: cirrus_check
-           token: ${{ secrets.GH_BOT_TOKEN }}
-           path: .github/actions/Compiler
-      - name: PBRP CI
-        uses: cirruslabs/cirrus-action@v2
+    steps:
+    - uses: actions/checkout@v2
+    - uses: cirruslabs/cirrus-action@v2
       

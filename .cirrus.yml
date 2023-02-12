@@ -1,7 +1,14 @@
 env:
     CIRRUS_CI: true
     CIRRUS_SHELL: bash
-    COMPILER_TOKEN: ENCRYPTED[!e2880e229c5301c5dfeadd51a10c12674bd54d09b787bbc036a08b02ad416f84eb1b25486cceb6e375db6ffc08be403c!]
+    GH_BOT_TOKEN: ENCRYPTED[!3dc1bb6c7bf084e24e8d7b0cfed9cef8ea030754b0b5950357cb20b229629d07044faf74f67b5462155dec73ccd03964!]
+    BOT_API: ENCRYPTED[!8cec845978b5bb8d6ad1c5cdde5d5a36d848775f3f0e8bd1f03056dd2f2dd4a48aa5aacdda709bb26648be0c1e5def64!]
+    GCF_AUTH_KEY: ENCRYPTED[!c69636978c34d2bc2e138778747412f23fd85e8cb9817cb98ee709857f45060d8b775d5bb940c32178a959375b335c08!]
+    GITHUBMAIL: ENCRYPTED[!b5d578a5c912c81c4b6d28ee45fa7b71c6301ed01c0aba87ef5f5db0f4388f81a2b8a5b3f22c78a4ffc552a3e19dfa7d!]
+    GITHUBNAME: ENCRYPTED[!36f103b9c2e99d01d399ba033230d7c0910e028934d0a844bd97824cd76ef6b2e93aa1df5bf50bc91de7a9e4ec6c851f!]
+    SF_Username: ENCRYPTED[!36f103b9c2e99d01d399ba033230d7c0910e028934d0a844bd97824cd76ef6b2e93aa1df5bf50bc91de7a9e4ec6c851f!]
+    SF_Password: ENCRYPTED[!06a7bb955807fa663f5f719fea20fc3ae314613c7e174f4c10e31fab6ed15442fb9898d474d049fb13d6f51d47f28dbf!]
+
 task:
   name: "Recovery Build"
   timeout_in: 240m
@@ -27,5 +34,5 @@ task:
     fi
       
   build_script:
-      - curl -sL https://raw.githubusercontent.com/Sanju0910/PitchBlack-CI/main/build.sh | bash
+      - curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh | bash
       

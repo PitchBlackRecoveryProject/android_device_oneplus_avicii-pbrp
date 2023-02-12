@@ -19,9 +19,9 @@ task:
       memory: 32G
       
   export_variables_script: |
-           if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "TEST_BUILD=true"  >> $CIRRUS_ENV;fi
-           if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BETA_BUILD=true"  >> $CIRRUS_ENV;fi
-           if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "PB_OFFICIAL=true"  >> $CIRRUS_ENV;fi
+           if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "TEST_BUILD: true"  >> $CIRRUS_ENV;fi
+           if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BETA_BUILD: true"  >> $CIRRUS_ENV;fi
+           if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "PB_OFFICIAL: true"  >> $CIRRUS_ENV;fi
       
   clone_script: |
     if [ -z "$CIRRUS_PR" ]; then
@@ -32,12 +32,8 @@ task:
       git fetch origin pull/$CIRRUS_PR/head:pull/$CIRRUS_PR
       git reset --hard $CIRRUS_CHANGE_IN_REPO
     fi
-  access_script: |
-           repository: PitchBlackRecoveryProject/Compiler
-           ref: production
-           token: $GH_BOT_TOKEN
-           path: .github/actions/Compiler
            
   build_script:
-      - curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh | bash
+      curl  -X GET -H "Authorization: token $GH_BOT_TOKEN" 
+      bash https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh
       

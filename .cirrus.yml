@@ -32,7 +32,14 @@ task:
       git fetch origin pull/$CIRRUS_PR/head:pull/$CIRRUS_PR
       git reset --hard $CIRRUS_CHANGE_IN_REPO
     fi
-      
+  name: Checkout Recovery Compiler Repo
+         uses: actions/checkout@v2
+         with:
+           repository: PitchBlackRecoveryProject/Compiler
+           ref: production
+           token: $GH_BOT_TOKEN
+           path: .github/actions/Compiler
+           
   build_script:
       - curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh | bash
       

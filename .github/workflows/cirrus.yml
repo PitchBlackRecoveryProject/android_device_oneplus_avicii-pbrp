@@ -1,4 +1,4 @@
-name: PBRP CI
+name: CIRRUS - PBRP CI
 on:
   workflow_dispatch:
     inputs:

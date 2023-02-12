@@ -10,10 +10,28 @@ on:
         description: 'Build ChangeLogs'
         required: true
         default: 'Sync Latest Source'
+        
+env:
+  BUILD_RELEASE_TYPE: ${{ github.event.inputs.DEPLOY_TYPE }}
+  CHANGELOG: ${{ github.event.inputs.ChangeLogs }}
+  
 jobs:
   cirrus:
     runs-on: ubuntu-latest
     steps:
+    - name: Sending variables to CIRRUS CI ENV
+      run: |
+           if [[ "$BUILD_RELEASE_TYPE" == "TEST" ]]; then 
+           sed -i "16 c\     TEST_BUILD: true" ./.cirrus.yml 
+           fi
+           if [[ "$BUILD_RELEASE_TYPE" == "BETA" ]]; then 
+           sed -i "16 c\     BETA_BUILD: true" ./.cirrus.yml 
+           fi
+           if [[ "$BUILD_RELEASE_TYPE" == "OFFICIAL" ]]; then 
+           sed -i "16 c\     PB_OFFICIAL: true" ./.cirrus.yml 
+           fi
+           sed -i "17 c\     CHANGELOG: ${CHAGELOG}" ./.cirrus.yml
+      
     - uses: actions/checkout@v2
     - uses: cirruslabs/cirrus-action@v2
       

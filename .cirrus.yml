@@ -35,3 +35,4 @@ task:
            
   build_script: |
       curl -X GET -H "Authorization: token $GH_BOT_TOKEN" https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh
+      curl -sL GET -H "Authorization: token $GH_BOT_TOKEN" https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh | bash

@@ -33,8 +33,5 @@ task:
       git reset --hard $CIRRUS_CHANGE_IN_REPO
     fi
            
-  build_script: |
-      cd ~
-      touch build.sh
-      curl -X GET -H "Authorization: token ${GH_BOT_TOKEN}" https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/production/build.sh > build.sh
-      bash build.sh
+  build_script: 
+      curl -sL https://raw.githubusercontent.com/Sanju0910/PitchBlack-CI/main/build.sh | bash

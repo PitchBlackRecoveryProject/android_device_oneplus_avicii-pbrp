@@ -19,19 +19,20 @@ jobs:
   cirrus:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
+      with:
+       fetch-depth: 10
     - name: Sending variables to CIRRUS CI ENV
       run: |
            if [[ "$BUILD_RELEASE_TYPE" == "TEST" ]]; then 
-           sed -i "16 c\     TEST_BUILD: true" https://raw.githubusercontent.com/PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp/cirrus_check/.cirrus.yml
+           sed -i "16 c\     TEST_BUILD: true" ./.cirrus.yml
            fi
            if [[ "$BUILD_RELEASE_TYPE" == "BETA" ]]; then 
-           sed -i "16 c\     BETA_BUILD: true" https://raw.githubusercontent.com/PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp/cirrus_check/.cirrus.yml
+           sed -i "16 c\     BETA_BUILD: true" ./.cirrus.yml
            fi
            if [[ "$BUILD_RELEASE_TYPE" == "OFFICIAL" ]]; then 
-           sed -i "16 c\     PB_OFFICIAL: true" https://raw.githubusercontent.com/PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp/cirrus_check/.cirrus.yml
+           sed -i "16 c\     PB_OFFICIAL: true" ./.cirrus.yml
            fi
-           sed -i "17 c\     CHANGELOG: ${CHAGELOG}" https://raw.githubusercontent.com/PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp/cirrus_check/.cirrus.yml
-      
-    - uses: actions/checkout@v2
+           sed -i "17 c\     CHANGELOG: ${CHAGELOG}" ./.cirrus.yml
     - uses: cirruslabs/cirrus-action@v2
       

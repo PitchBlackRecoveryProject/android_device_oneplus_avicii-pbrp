@@ -11,6 +11,8 @@ env:
     MANIFEST: https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1
     VENDOR: oneplus
     CODENAME: avicii
+    BUILD_TYPE: TEST
+    CIRRUS_TAG: 4.0-test
     DT_LINK: https://github.com/PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp
     DT_BR: cirrus_check
     
@@ -23,11 +25,6 @@ task:
       image: ghcr.io/sanju0910/ubuntu:latest
       cpu: 8
       memory: 32G
-      
-  export_variables_script: |
-           if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "TEST_BUILD: true"  >> $CIRRUS_ENV;fi
-           if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BETA_BUILD: true"  >> $CIRRUS_ENV;fi
-           if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "PB_OFFICIAL: true"  >> $CIRRUS_ENV;fi
       
   clone_script: |
     if [ -z "$CIRRUS_PR" ]; then

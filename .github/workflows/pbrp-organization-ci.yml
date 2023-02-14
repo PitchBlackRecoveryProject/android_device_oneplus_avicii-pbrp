@@ -23,7 +23,6 @@ jobs:
                 repository-projects: write
     steps:
     - name: Sending variables to CIRRUS CI ENV
-    - uses: actions/checkout@v3
       with:
        fetch-depth: 10
       run: |

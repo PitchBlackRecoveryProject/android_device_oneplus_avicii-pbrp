@@ -38,13 +38,13 @@ task:
     fi
     
   BUILD_TYPE_script: |
-       if [ "$BUILD_RELEASE_TYPE" = "TEST" ]; then
+       if [ "$BUILD_RELEASE_TYPE" == "TEST" ]; then
          echo TEST_BUILD: true >> $CIRRUS_ENV;
        fi
-       if [ "$BUILD_RELEASE_TYPE" = "BETA" ]; then
+       if [ "$BUILD_RELEASE_TYPE" == "BETA" ]; then
          echo "BETA_BUILD: true" >> $CIRRUS_ENV;
        fi
-       if [ "$BUILD_RELEASE_TYPE" = "OFFICIAL" ]; then
+       if [ "$BUILD_RELEASE_TYPE" == "OFFICIAL" ]; then
          echo "PB_OFFICIAL: true" >> $CIRRUS_ENV;
        fi         
        

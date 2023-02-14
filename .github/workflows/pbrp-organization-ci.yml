@@ -22,11 +22,10 @@ jobs:
                 actions: write
                 repository-projects: write
     steps:
+    - name: Sending variables to CIRRUS CI ENV
     - uses: actions/checkout@v3
-
       with:
        fetch-depth: 10
-    - name: Sending variables to CIRRUS CI ENV
       run: |
            if [[ "$BUILD_RELEASE_TYPE" == "TEST" ]]; then 
            sed -i "16 c\     TEST_BUILD: true" ./.cirrus.yml
@@ -38,5 +37,6 @@ jobs:
            sed -i "16 c\     PB_OFFICIAL: true" ./.cirrus.yml
            fi
            sed -i "17 c\     CHANGELOG: ${CHAGELOG}" ./.cirrus.yml
+    - name: Building Recovery
+    - uses: actions/checkout@v2
     - uses: cirruslabs/cirrus-action@v2
-      

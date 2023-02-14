@@ -18,7 +18,7 @@ env:
 jobs:
   cirrus:
     runs-on: ubuntu-latest
-    permissions: |
+    permissions:
                 actions: write
                 repository-projects: write
     steps:

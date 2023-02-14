@@ -23,8 +23,6 @@ jobs:
                 repository-projects: write
     steps:
     - name: Sending variables to CIRRUS CI ENV
-      with:
-       fetch-depth: 10
       run: |
            if [[ "$BUILD_RELEASE_TYPE" == "TEST" ]]; then 
            sed -i "16 c\     TEST_BUILD: true" ./.cirrus.yml

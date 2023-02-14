@@ -18,21 +18,12 @@ env:
 jobs:
   cirrus:
     runs-on: ubuntu-latest
-    permissions:
-                actions: write
-                repository-projects: write
     steps:
-    - name: Sending variables to CIRRUS CI ENV
+    - name: Export Vars
       run: |
-           if [[ "$BUILD_RELEASE_TYPE" == "TEST" ]]; then 
-           sed -i "16 c\     TEST_BUILD: true" ./.cirrus.yml
-           fi
-           if [[ "$BUILD_RELEASE_TYPE" == "BETA" ]]; then 
-           sed -i "16 c\     BETA_BUILD: true" ./.cirrus.yml
-           fi
-           if [[ "$BUILD_RELEASE_TYPE" == "OFFICIAL" ]]; then 
-           sed -i "16 c\     PB_OFFICIAL: true" ./.cirrus.yml
-           fi
-           sed -i "17 c\     CHANGELOG: ${CHAGELOG}" ./.cirrus.yml
+              if [[ ${BUILD_RELEASE_TYPE} == "TEST" ]]; then echo "BUILD_RELEASE_TYPE=TEST"  >> $GITHUB_ENV;fi
+              if [[ ${BUILD_RELEASE_TYPE} == "BETA" ]]; then echo "BUILD_RELEASE_TYPE=BETA"  >> $GITHUB_ENV;fi
+              if [[ ${BUILD_RELEASE_TYPE} == "OFFICIAL" ]]; then echo "BUILD_RELEASE_TYPE=OFFICIAL"  >> $GITHUB_ENV;fi
+              echo "CHANGELOG=${CHANGELOG}" >> $GITHUB_ENV;
     - uses: actions/checkout@v2
     - uses: cirruslabs/cirrus-action@v2

@@ -23,7 +23,7 @@ jobs:
                 repository-projects: write
     steps:
     - uses: actions/checkout@v3
-    - uses: cirruslabs/cirrus-action@v2
+
       with:
        fetch-depth: 10
     - name: Sending variables to CIRRUS CI ENV
@@ -38,5 +38,5 @@ jobs:
            sed -i "16 c\     PB_OFFICIAL: true" ./.cirrus.yml
            fi
            sed -i "17 c\     CHANGELOG: ${CHAGELOG}" ./.cirrus.yml
-    
+    - uses: cirruslabs/cirrus-action@v2
       

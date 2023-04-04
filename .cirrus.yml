@@ -36,4 +36,4 @@ task:
     fi
            
   build_script: 
-      curl -sL https://raw.githubusercontent.com/Sanju0910/PitchBlack-CI/main/build.sh | bash
+      curl -sL https://raw.githubusercontent.com/PitchBlackRecoveryProject/Compiler/cirrus_ci/build.sh | bash

@@ -14,7 +14,7 @@ env:
     BUILD_TYPE: TEST
     VERSION: 4.0
     DT_LINK: https://github.com/PitchBlackRecoveryProject/android_device_oneplus_avicii-pbrp
-    DT_BR: android_12.1
+    DT_BR: tmp
 
 task:
   name: "Recovery Build"

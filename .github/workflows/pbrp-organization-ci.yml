@@ -27,12 +27,12 @@ env:
 jobs:
   PBRP_CI:
     if: "(! contains(toJSON(github.event.commits.*.message), '[skip-ci]'))"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
        - name: Auto Adapt Manifest
          # /* if your branch name is other than the one which you dispatched workflow from then set it manually in the place of ${GITHUB_REF##*/}" */ 
-         run: echo "MANIFEST=https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1" >> $GITHUB_ENV
+         run: echo "MANIFEST=https://github.com/PitchBlackRecoveryProject/manifest_pb -b ${GITHUB_REF##*/}" >> $GITHUB_ENV
 
        - name: Export Vars
          run: |
@@ -57,7 +57,7 @@ jobs:
        - name: Checkout Recovery Compiler Repo
          uses: actions/checkout@v2
          with:
-           repository: sreeshankark/Compiler
+           repository: PitchBlackRecoveryProject/Compiler
            ref: production
            token: ${{ secrets.GH_BOT_TOKEN }}
            path: .github/actions/Compiler

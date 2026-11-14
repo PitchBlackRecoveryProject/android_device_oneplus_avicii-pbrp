@@ -6,7 +6,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_avicii.mk
+    $(LOCAL_DIR)/pb_avicii.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_avicii-eng
+    pb_avicii-eng

@@ -15,15 +15,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit from avicii device
 $(call inherit-product, device/oneplus/avicii/device.mk)
 
-# Inherit some common TWRP stuff.
-$(call inherit-product, vendor/twrp/config/common.mk)
+# Inherit some common PBRP stuff.
+$(call inherit-product, vendor/pb/config/common.mk)
 
 # Release name
 PRODUCT_RELEASE_NAME := avicii
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := avicii
-PRODUCT_NAME := twrp_avicii
+PRODUCT_NAME := pb_avicii
 PRODUCT_BRAND := OnePlus
 PRODUCT_MODEL := Nord
 PRODUCT_MANUFACTURER := oneplus

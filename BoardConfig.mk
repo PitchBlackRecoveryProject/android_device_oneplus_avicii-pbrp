@@ -152,7 +152,7 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # PBRP specific build flags
 PB_DISABLE_DEFAULT_TREBLE_COMP := true
-PB_TORCH_PATH := "/sys/class/leds/led:torch_0"
+PB_TORCH_PATH := "/tmp/torch"
 PB_DISABLE_DEFAULT_DM_VERITY := true
 PB_DEVICE_RATIO := "20:9"
 
